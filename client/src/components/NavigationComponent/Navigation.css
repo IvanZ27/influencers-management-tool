@@ -6,7 +6,8 @@
 	font-family: sans-serif;
 	justify-content: space-between;
 	padding: 20px 40px;
-	position: relative;
+	position: sticky;
+	top: 0;
 }
 
 .logo img {

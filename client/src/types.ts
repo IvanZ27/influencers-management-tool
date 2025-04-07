@@ -9,3 +9,5 @@ export interface Influencer {
 	lastName: string;
 	accounts: Account[];
 }
+
+export interface InfluencerInput extends Omit<Influencer, "id"> {}
