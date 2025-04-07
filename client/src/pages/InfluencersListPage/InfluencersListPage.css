@@ -60,7 +60,7 @@ body {
 .list-page__thead th,
 .list-page__table td {
 	border-bottom: 1px solid #333;
-	padding: 0.25em 0.5em;
+	padding: 0.5em;
 	text-align: left;
 }
 
@@ -116,7 +116,7 @@ body {
 }
 
 .list-page__btn--delete {
-	background-color: #eb4034;
+	background-color: #bd362d;
 	color: #fff;
 }
 
