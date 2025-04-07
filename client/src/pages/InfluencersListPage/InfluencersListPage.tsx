@@ -13,7 +13,6 @@ function ListPage() {
 	const navigate = useNavigate();
 	const [loading, setLoading] = useState(false);
 	const loadInfluencers = async (search = "") => {
-		// let loadingTimeout: NodeJS.Timeout | null = null;
 		let loadingTimeout: NodeJS.Timeout | null;
 
 		loadingTimeout = setTimeout(() => setLoading(true), 400);

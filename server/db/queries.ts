@@ -13,7 +13,7 @@ export async function getInfluencers(search?: string): Promise<Influencer[]> {
 		FROM influencers i
 		LEFT JOIN social_accounts s ON s.influencer_id = i.id
 	`;
-	const params: any[] = [];
+	const params: string[] = [];
 
 	if (search && search.length >= 3) {
 		query += `
