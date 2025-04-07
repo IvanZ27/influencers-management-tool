@@ -10,8 +10,4 @@ export interface Influencer {
 	accounts: Account[];
 }
 
-export interface ErrorResponse {
-	message: string;
-}
-
 export interface InfluencerInput extends Omit<Influencer, "id"> {}

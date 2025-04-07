@@ -40,7 +40,7 @@ async function setupDatabase(): Promise<void> {
 		await pool.query(`
 			INSERT INTO social_accounts (influencer_id, platform, username) VALUES
 																				('11111111-1111-1111-1111-111111111111', 'Instagram', 'boris_blade'),
-																				('11111111-1111-1111-1111-111111111111', 'Instagram', 'boris_blade.live'),
+																				('11111111-1111-1111-1111-111111111111', 'Instagram', 'boris_blade.local'),
 																				('11111111-1111-1111-1111-111111111111', 'TikTok', 'boris_blade'),
 
 																				('22222222-2222-2222-2222-222222222222', 'TikTok', 'mickey_boxer'),
@@ -51,7 +51,7 @@ async function setupDatabase(): Promise<void> {
 																				('44444444-4444-4444-4444-444444444444', 'Instagram', 'franky4fingers'),
 																				('44444444-4444-4444-4444-444444444444', 'TikTok', 'franky4fingers'),
 																				('44444444-4444-4444-4444-444444444444', 'TikTok', 'ifranky4fingers_live'),
-																				('44444444-4444-4444-4444-444444444444', 'TikTok', 'franky_four_fingers_exclusive');
+																				('44444444-4444-4444-4444-444444444444', 'TikTok', 'franky_four_fingers_exclusive');	
 		`);
 
 		await pool.query(

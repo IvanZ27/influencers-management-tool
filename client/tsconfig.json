@@ -1,4 +1,15 @@
 {
 	"files": [],
-	"references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }]
+	"references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }],
+	"compilerOptions": {
+		"jsx": "react-jsx",
+		"module": "ESNext",
+		"target": "ESNext",
+		"esModuleInterop": true,
+		"moduleResolution": "Node",
+		"resolveJsonModule": true,
+		"isolatedModules": false,
+		"types": ["vite/client", "jest", "@testing-library/jest-dom", "node"],
+		"allowImportingTsExtensions": true
+	}
 }

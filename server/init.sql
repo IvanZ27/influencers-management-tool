@@ -14,22 +14,24 @@ CREATE TABLE IF NOT EXISTS social_accounts (
     );
 
 INSERT INTO influencers (id, first_name, last_name) VALUES
-                                                        ('11111111-1111-1111-1111-111111111111', 'Alice', 'Anderson'),
-                                                        ('22222222-2222-2222-2222-222222222222', 'Bob', 'Brown'),
-                                                        ('33333333-3333-3333-3333-333333333333', 'Charlie', 'Chaplin'),
-                                                        ('44444444-4444-4444-4444-444444444444', 'Diana', 'Davis');
+                                                        ('11111111-1111-1111-1111-111111111111', 'Boris', 'The Blade Yurinov'),
+                                                        ('22222222-2222-2222-2222-222222222222', 'Mickey', 'O''Neil'),
+                                                        ('33333333-3333-3333-3333-333333333333', 'Tony', 'Bullet Tooth'),
+                                                        ('44444444-4444-4444-4444-444444444444', 'Franky', 'Four-Fingers');
 
 INSERT INTO social_accounts (influencer_id, platform, username) VALUES
-                                                                    ('11111111-1111-1111-1111-111111111111', 'Instagram', 'alice.insta1'),
-                                                                    ('11111111-1111-1111-1111-111111111111', 'Instagram', 'alice.insta2'),
-                                                                    ('11111111-1111-1111-1111-111111111111', 'TikTok', 'alice.tok'),
+                                                                    ('11111111-1111-1111-1111-111111111111', 'Instagram', 'boris_blade'),
+                                                                    ('11111111-1111-1111-1111-111111111111', 'Instagram', 'boris_blade.docker'),
+                                                                    ('11111111-1111-1111-1111-111111111111', 'TikTok', 'boris_blade'),
 
-                                                                    ('22222222-2222-2222-2222-222222222222', 'TikTok', 'bob.tok'),
+                                                                    ('22222222-2222-2222-2222-222222222222', 'TikTok', 'mickey_boxer'),
 
-                                                                    ('33333333-3333-3333-3333-333333333333', 'Instagram', 'charlie.insta'),
-                                                                    ('33333333-3333-3333-3333-333333333333', 'TikTok', 'charlie.tok'),
+                                                                    ('33333333-3333-3333-3333-333333333333', 'Instagram', 'bullet_tooth'),
+                                                                    ('33333333-3333-3333-3333-333333333333', 'TikTok', 'bullet_tooth'),
 
-                                                                    ('44444444-4444-4444-4444-444444444444', 'Instagram', 'diana.insta'),
-                                                                    ('44444444-4444-4444-4444-444444444444', 'TikTok', 'diana.tok');
+                                                                    ('44444444-4444-4444-4444-444444444444', 'Instagram', 'franky4fingers'),
+                                                                    ('44444444-4444-4444-4444-444444444444', 'TikTok', 'franky4fingers'),
+                                                                    ('44444444-4444-4444-4444-444444444444', 'TikTok', 'ifranky4fingers_live'),
+                                                                    ('44444444-4444-4444-4444-444444444444', 'TikTok', 'franky_four_fingers_exclusive');
 
 CREATE UNIQUE INDEX IF NOT EXISTS unique_account ON social_accounts (influencer_id, platform, username);

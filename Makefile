@@ -25,3 +25,11 @@ fix-css:
 	cd client && npx stylelint "src/**/*.css" --fix
 
 pretty: prettier fix-css
+
+fe-test:
+	cd client && npm run test
+
+be-test:
+	cd server && npm run test
+
+test: fe-test be-test
