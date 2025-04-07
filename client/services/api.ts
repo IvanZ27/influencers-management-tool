@@ -25,8 +25,6 @@ export async function deleteInfluencer(id: string): Promise<void> {
 
 export async function getInfluencerById(id: string): Promise<Influencer> {
 	const response = await api.get(`/influencer/${id}`);
-	console.log("assa1 getInfluencers() response:", response.data);
-
 	return response.data;
 }
 

@@ -55,7 +55,7 @@ function CreatePage() {
 
 	const updateAccount = (index: number, field: keyof Account, value: string) => {
 		const newAccounts = [...accounts];
-		newAccounts[index][field] = value as any;
+		newAccounts[index][field] = value as SocialMediaPlatform;
 		setAccounts(newAccounts);
 	};
 
