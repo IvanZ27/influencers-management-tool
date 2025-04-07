@@ -120,17 +120,6 @@ body {
 	color: #fff;
 }
 
-.list-page__footer {
-	background-color: #161616;
-	border-top: 1px solid #333;
-	bottom: 0;
-	color: #666;
-	font-size: 0.9em;
-	padding: 15px;
-	position: sticky;
-	text-align: center;
-}
-
 @media (768px <= width <= 1400px) {
 	.list-page__text-ellipsis {
 		max-width: clamp(80px, 15vw, 450px);

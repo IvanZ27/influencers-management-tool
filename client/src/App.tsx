@@ -4,6 +4,7 @@ import InfluencersListPage from "./pages/InfluencersListPage/InfluencersListPage
 import CreateInfluencerPage from "./pages/CreateInfluencerPage/CreateInfluencerPage.tsx";
 import Navigation from "./components/NavigationComponent/Navigation.tsx";
 import { ToastContainer } from "react-toastify";
+import FooterComponent from "./components/FooterComponent/FooterComponent.tsx";
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 				<Route path="/create" element={<CreateInfluencerPage />} />
 				<Route path="/edit/:id" element={<CreateInfluencerPage />} />
 			</Routes>
+			<FooterComponent />
 		</BrowserRouter>
 	);
 }
