@@ -1,40 +1,18 @@
-import { useState, useEffect } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
-import axios from "axios";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import InfluencersListPage from "./pages/InfluencersListPage/InfluencersListPage.tsx";
+import CreateInfluencerPage from "./pages/CreateInfluencerPage/CreateInfluencerPage.tsx";
+import Navigation from "./components/Navigation/Navigation.tsx";
 
 function App() {
-	const [count, setCount] = useState(0);
-
-	const getInfluencers = async () => {
-		const response = await axios.get("http://localhost:1337/influencers");
-		console.log("assa response: ", response.data.influensers);
-	};
-
-	useEffect(() => {
-		getInfluencers();
-	}, []);
-
 	return (
-		<>
-			<div>
-				<a href="https://vite.dev" target="_blank">
-					<img src={viteLogo} className="logo" alt="Vite logo" />
-				</a>
-				<a href="https://react.dev" target="_blank">
-					<img src={reactLogo} className="logo react" alt="React logo" />
-				</a>
-			</div>
-			<h1>Vite + React</h1>
-			<div className="card">
-				<button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-				<p>
-					Edit <code>src/App.tsx</code> and save to test HMR
-				</p>
-			</div>
-			<p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-		</>
+		<BrowserRouter>
+			<Navigation />
+			<Routes>
+				<Route path="/" element={<InfluencersListPage />} />
+				<Route path="/create" element={<CreateInfluencerPage />} />
+			</Routes>
+		</BrowserRouter>
 	);
 }
 

@@ -1,0 +1,23 @@
+.icon-wrapper {
+	display: inline-block;
+	height: 24px;
+	position: relative;
+	width: 24px;
+}
+
+.tik-tok-badge {
+	background: #28ffff;
+	background: linear-gradient(to right, #199c9c, #9e1c34);
+	border-radius: 5px;
+	box-shadow: 0 0 0 0.5px white;
+	color: white;
+	font-size: 10px;
+	font-weight: bold;
+	line-height: 1;
+	min-width: 6px;
+	padding: 0.5px 5px;
+	position: absolute;
+	right: -9px;
+	text-align: center;
+	top: -7px;
+}

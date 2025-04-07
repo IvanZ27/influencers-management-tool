@@ -1,0 +1,23 @@
+.icon-wrapper {
+	display: inline-block;
+	height: 24px;
+	position: relative;
+	width: 24px;
+}
+
+.instagram-badge {
+	background: #833ab4;
+	background: linear-gradient(to right, #6b2f92, #be1818, #b17b30);
+	border-radius: 5px;
+	box-shadow: 0 0 0 0.5px white;
+	color: white;
+	font-size: 10px;
+	font-weight: bold;
+	line-height: 1;
+	min-width: 6px;
+	padding: 0.5px 5px;
+	position: absolute;
+	right: -9px;
+	text-align: center;
+	top: -7px;
+}
