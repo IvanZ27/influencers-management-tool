@@ -18,6 +18,8 @@
   "homepage": "https://github.com/IvanZ27/influencers-management-tool#readme",
   "description": "",
   "devDependencies": {
-    "prettier": "^3.5.3"
+    "prettier": "^3.5.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   }
 }

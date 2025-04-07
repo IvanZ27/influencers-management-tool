@@ -1,0 +1,79 @@
+.nav {
+	align-items: center;
+	background: #1e1e1e;
+	color: white;
+	display: flex;
+	font-family: sans-serif;
+	justify-content: space-between;
+	padding: 20px 40px;
+	position: relative;
+}
+
+.logo img {
+	height: 40px;
+}
+
+.menu {
+	display: flex;
+	gap: 1rem;
+}
+
+.menu a {
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.toggle {
+	cursor: pointer;
+	display: none;
+	height: 25px;
+	position: relative;
+	width: 30px;
+}
+
+.toggle span {
+	background: white;
+	border-radius: 2px;
+	display: block;
+	height: 3px;
+	margin: 5px 0;
+	position: relative;
+	transition: 0.3s ease;
+	width: 100%;
+	z-index: 1000;
+}
+
+.toggle.open span:nth-child(1) {
+	transform: rotate(45deg) translate(5px, 5px);
+}
+
+.toggle.open span:nth-child(2) {
+	opacity: 0;
+}
+
+.toggle.open span:nth-child(3) {
+	transform: rotate(-45deg) translate(6px, -6px);
+}
+
+@media (width <= 768px) {
+	.menu {
+		background: #1e1e1e;
+		display: none;
+		flex-direction: column;
+		left: 0;
+		padding: 1rem 0;
+		position: absolute;
+		text-align: center;
+		top: 60px;
+		width: 100%;
+	}
+
+	.menu.show {
+		display: flex;
+	}
+
+	.toggle {
+		display: block;
+	}
+}
