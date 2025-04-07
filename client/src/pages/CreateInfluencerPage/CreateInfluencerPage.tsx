@@ -222,7 +222,6 @@ function CreatePage() {
 					</button>
 				</form>
 			</main>
-			<footer className="create-page__footer">© 2025 ISchoffa</footer>
 		</div>
 	);
 }

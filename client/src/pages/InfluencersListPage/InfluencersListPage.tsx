@@ -135,7 +135,6 @@ function ListPage() {
 					)}
 				</div>
 			</main>
-			<footer className="list-page__footer">© 2025 ISchoffa</footer>
 		</div>
 	);
 }
