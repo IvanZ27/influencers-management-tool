@@ -1,4 +1,4 @@
-import pool from "./db";
+import pool from "./db/db";
 
 async function setupDatabase(): Promise<void> {
 	if (process.env.SKIP_DB_SETUP === "true") {
@@ -21,8 +21,8 @@ async function setupDatabase(): Promise<void> {
 			CREATE TABLE IF NOT EXISTS social_accounts (
 														   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
 				influencer_id UUID REFERENCES influencers(id) ON DELETE CASCADE,
-				platform VARCHAR(50) NOT NULL,
-				username VARCHAR(50) NOT NULL
+				platform VARCHAR(70) NOT NULL,
+				username VARCHAR(70) NOT NULL
 				)
 		`);
 
@@ -54,9 +54,13 @@ async function setupDatabase(): Promise<void> {
 																				('44444444-4444-4444-4444-444444444444', 'TikTok', 'franky_four_fingers_exclusive');
 		`);
 
-		console.log("✅ Database is ready");
+		await pool.query(
+			`CREATE UNIQUE INDEX IF NOT EXISTS unique_account ON social_accounts (influencer_id, platform, username)`
+		);
+
+		console.log("Database is ready");
 	} catch (err) {
-		console.error("❌ Failed to set up database:", err);
+		console.error("Failed to set up database:", err);
 		process.exit(1);
 	}
 }

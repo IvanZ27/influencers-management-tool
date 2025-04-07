@@ -31,3 +31,5 @@ INSERT INTO social_accounts (influencer_id, platform, username) VALUES
 
                                                                     ('44444444-4444-4444-4444-444444444444', 'Instagram', 'diana.insta'),
                                                                     ('44444444-4444-4444-4444-444444444444', 'TikTok', 'diana.tok');
+
+CREATE UNIQUE INDEX IF NOT EXISTS unique_account ON social_accounts (influencer_id, platform, username);

@@ -1,0 +1,27 @@
+.search-input {
+	align-items: center;
+	display: flex;
+	flex-shrink: 0;
+}
+
+#searchthis {
+	display: inline;
+}
+
+#search-component-box {
+	background: #eee;
+	border: 0 none;
+	border-radius: 5px 0 0 5px;
+	outline: none;
+	padding: 10px;
+	width: 160px;
+}
+
+#search-component-btn {
+	background: #aeffde;
+	border: 0 none;
+	border-radius: 0 5px 5px 0;
+	color: #1e1e1e;
+	font-weight: bold;
+	padding: 10px 20px;
+}

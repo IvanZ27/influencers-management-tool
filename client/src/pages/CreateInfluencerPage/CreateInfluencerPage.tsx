@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 import "./CreateInfluencerPage.css";
+import { createInfluencer, getInfluencerById, updateInfluencer } from "../../../services/api.ts";
+import axios, { AxiosError } from "axios";
+import { toast } from "react-toastify";
+import { useNavigate, useParams } from "react-router-dom";
 
 type SocialMediaPlatform = "Instagram" | "TikTok";
 
@@ -18,13 +22,31 @@ function CreatePage() {
 		setAccounts([{ platform: "Instagram", username: "" }]);
 	}, []);
 
+	const { id } = useParams();
+	const isEditMode = Boolean(id);
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (!id) return;
+
+		const fetchData = async () => {
+			try {
+				const influencer = await getInfluencerById(id);
+				setFirstName(influencer.firstName);
+				setLastName(influencer.lastName);
+				setAccounts(influencer.accounts);
+			} catch (err) {
+				toast.error("Failed to load influencer data.");
+			}
+		};
+
+		fetchData();
+	}, [id]);
+
 	const addAccount = () => {
 		setAccounts([...accounts, { platform: "Instagram", username: "" }]);
 	};
 
-	//
-	//
-	// fake methods replace with RestAPI requests
 	const removeAccount = (index: number) => {
 		const newAccounts = [...accounts];
 		newAccounts.splice(index, 1);
@@ -37,17 +59,96 @@ function CreatePage() {
 		setAccounts(newAccounts);
 	};
 
-	const handleCreate = () => {
-		if (!accounts[0].username.trim()) {
-			setError("At least one account is required.");
+	const validateForm = (): string | null => {
+		const trimmedFirstName = firstName.trim();
+		const trimmedLastName = lastName.trim();
+
+		const nameRegex = /^[\p{L}\p{M}'\- ]+$/u;
+		const usernameRegex = /^[a-zA-Z0-9._]+$/;
+
+		if (!trimmedFirstName || !trimmedLastName) {
+			return "First and last name are required.";
+		}
+		if (trimmedFirstName.length > 50 || trimmedLastName.length > 50) {
+			return "First name and last name must be at most 50 characters.";
+		}
+		if (!nameRegex.test(trimmedFirstName)) {
+			return "First name contains invalid characters.";
+		}
+		if (!nameRegex.test(trimmedLastName)) {
+			return "Last name contains invalid characters.";
+		}
+
+		if (accounts.length === 0 || !accounts[0].username.trim()) {
+			return "At least one account is required.";
+		}
+
+		const seen = new Set();
+		for (const account of accounts) {
+			const platform = account.platform.trim();
+			const username = account.username.trim();
+
+			if (!platform || !username) {
+				return "All accounts must have platform and username.";
+			}
+
+			if (!["Instagram", "TikTok"].includes(platform)) {
+				return `Unsupported platform: ${platform}`;
+			}
+
+			if (!usernameRegex.test(username)) {
+				return `Usernames can only contain English letters, numbers, dots or underscores: ${username}`;
+			}
+
+			const key = `${platform.toLowerCase()}:${username.toLowerCase()}`;
+			if (seen.has(key)) {
+				return `Duplicate account: ${platform} - ${username}`;
+			}
+			seen.add(key);
+		}
+
+		return null;
+	};
+
+	const handleCreate = async () => {
+		const trimmedFirstName = firstName.trim();
+		const trimmedLastName = lastName.trim();
+
+		const validationError = validateForm();
+		if (validationError) {
+			setError(validationError);
 			return;
 		}
-		setError("");
-		alert("Created!");
+
+		try {
+			setError("");
+
+			if (isEditMode) {
+				await updateInfluencer(id!, {
+					firstName: trimmedFirstName,
+					lastName: trimmedLastName,
+					accounts,
+				});
+				toast.success("Influencer updated!");
+			} else {
+				await createInfluencer({
+					firstName: trimmedFirstName,
+					lastName: trimmedLastName,
+					accounts,
+				});
+				toast.success("Influencer created!");
+			}
+
+			navigate("/");
+		} catch (err) {
+			if (axios.isAxiosError(err)) {
+				const axiosErr = err as AxiosError<{ message: string }>;
+				setError(axiosErr.response?.data?.message ?? "Unexpected error occurred.");
+			} else {
+				setError("Unexpected error occurred.");
+			}
+		}
 	};
-	// fake methods replace with RestAPI requests
-	//
-	//
 
 	return (
 		<div className="create-page">
@@ -95,7 +196,7 @@ function CreatePage() {
 										value={account.username}
 										placeholder="Username"
 										onChange={(e) => updateAccount(idx, "username", e.target.value)}
-										className="create-page__input"
+										className="create-page__input-username"
 									/>
 									{idx > 0 && (
 										<button
@@ -110,14 +211,14 @@ function CreatePage() {
 								</div>
 							</div>
 						))}
-						{error && <div className="create-page__error">{error}</div>}
 						<button type="button" className="create-page__add-btn" onClick={addAccount}>
 							+ Add Account
 						</button>
 					</div>
 
+					{error && <div className="create-page__error">{error}</div>}
 					<button type="button" className="create-page__create-btn" onClick={handleCreate}>
-						Create
+						{isEditMode ? "Update" : "Create"}
 					</button>
 				</form>
 			</main>
